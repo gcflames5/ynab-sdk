@@ -40,6 +40,9 @@ public class SaveTransaction {
   @SerializedName("amount")
   private BigDecimal amount = null;
 
+  @SerializedName("memo")
+  private String memo = null;
+
   /**
    * The cleared status of the transaction
    */
@@ -172,7 +175,16 @@ public class SaveTransaction {
     return this;
   }
 
-   /**
+  /**
+   * The description of the transaction
+   * @return memo
+   */
+  @ApiModelProperty(value = "he description of the transaction")
+  public String getMemo() { return memo; }
+
+  public void setMemo(String memo) { this.memo = memo; }
+
+  /**
    * Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default.
    * @return approved
   **/
@@ -199,7 +211,8 @@ public class SaveTransaction {
         Objects.equals(this.date, saveTransaction.date) &&
         Objects.equals(this.amount, saveTransaction.amount) &&
         Objects.equals(this.cleared, saveTransaction.cleared) &&
-        Objects.equals(this.approved, saveTransaction.approved);
+        Objects.equals(this.approved, saveTransaction.approved) &&
+        Objects.equals(this.memo, saveTransaction.approved);
   }
 
   @Override
@@ -218,6 +231,7 @@ public class SaveTransaction {
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    cleared: ").append(toIndentedString(cleared)).append("\n");
     sb.append("    approved: ").append(toIndentedString(approved)).append("\n");
+    sb.append("    memo: ").append(toIndentedString(memo)).append("\n");
     sb.append("}");
     return sb.toString();
   }
