@@ -111,6 +111,9 @@ public class TransactionDetail {
   @SerializedName("subtransactions")
   private List<SubTransaction> subtransactions = new ArrayList<SubTransaction>();
 
+  @SerializedName("memo")
+  private String memo = null;
+
   public TransactionDetail id(UUID id) {
     this.id = id;
     return this;
@@ -255,6 +258,24 @@ public class TransactionDetail {
     this.accountName = accountName;
   }
 
+  public TransactionDetail memo(String memo) {
+    this.memo = memo;
+    return this;
+  }
+
+  /**
+   * Get memo
+   * @return memo
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public String getMemo() {
+    return memo;
+  }
+
+  public void setMemo(String memo) {
+    this.memo = memo;
+  }
+
   public TransactionDetail subtransactions(List<SubTransaction> subtransactions) {
     this.subtransactions = subtransactions;
     return this;
@@ -301,7 +322,7 @@ public class TransactionDetail {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, date, amount, cleared, approved, accountId, deleted, accountName, subtransactions);
+    return Objects.hash(id, date, amount, cleared, approved, accountId, deleted, accountName, subtransactions, memo);
   }
 
 
@@ -319,6 +340,7 @@ public class TransactionDetail {
     sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
     sb.append("    accountName: ").append(toIndentedString(accountName)).append("\n");
     sb.append("    subtransactions: ").append(toIndentedString(subtransactions)).append("\n");
+    sb.append("    memo: ").append(toIndentedString(memo)).append("\n");
     sb.append("}");
     return sb.toString();
   }
